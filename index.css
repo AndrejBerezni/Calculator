@@ -28,7 +28,7 @@ header, footer {
     justify-content: center;
     height: 5vh;
     background-color: var(--hfBg);
-    color: var(--hfText);
+    color: var(--cyan);
     font-weight: bold;
     text-align: center;
     font-family: var(--text);
@@ -37,7 +37,10 @@ header, footer {
 
 main {
     flex: 1;
-    background-color: var(--mainBg);
+    background-image: url('./magicpattern-pattern-1678993849102.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,7 +52,7 @@ main {
     justify-content: space-between;
     height: 60vh;
     min-width: 40vw;
-    background-color: var(--lPink);
+    background-color: var(--mainBg);
     padding: 20px;
     border-radius: 10px;
     border: 5px solid var(--cyan);
@@ -62,10 +65,11 @@ main {
     border: 5px solid var(--dPink);
     background-color: var(--cyan);
     color: var(--dPink);
-    padding: 5px;
+    padding: 5px 10px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    box-shadow: 0px 5px 10px var(--hfBg);
 }
 
 #screen > p {
@@ -89,6 +93,7 @@ button {
     height: 100%;
     border-radius: 10px;
     border: 5px solid var(--cyan);
+    box-shadow: 0px 5px 10px var(--hfBg);
 }
 
 .num-btn {
@@ -112,7 +117,7 @@ button {
 }
 
 .fun-btn:active {
-    background-color: var(--hfText);
+    background-color: var(--hfBg);
 }
 
 #clear-dot {
