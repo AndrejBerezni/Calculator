@@ -1,0 +1,40 @@
+:root {
+    --text: 'Fjalla One', sans-serif;
+    --numbers: 'Stick No Bills', sans-serif;
+    --hfBg: #073b4c;
+    --mainBg: #118ab2;
+    --cyan: #06d6a0;
+    --hfText: #ffd166;
+    --dPink: #ef476f;
+    --lPink: #f78c6b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+header, footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
+    background-color: var(--hfBg);
+    color: var(--hfText);
+    font-weight: bold;
+    text-align: center;
+}
+
+
+main {
+    flex: 1;
+    background-color: var(--mainBg);
+}
