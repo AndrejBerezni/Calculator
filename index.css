@@ -31,10 +31,169 @@ header, footer {
     color: var(--hfText);
     font-weight: bold;
     text-align: center;
+    font-family: var(--text);
 }
 
 
 main {
     flex: 1;
     background-color: var(--mainBg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 60vh;
+    min-width: 40vw;
+    background-color: var(--lPink);
+    padding: 20px;
+    border-radius: 10px;
+    border: 5px solid var(--cyan);
+    box-shadow: 0px 0px 10px var(--hfBg);
+}
+
+#screen {
+    height: 20%;
+    border-radius: 10px;
+    border: 5px solid var(--dPink);
+    background-color: var(--cyan);
+    color: var(--dPink);
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#screen > p {
+    height: 100%;
+    font-size: 5rem;
+    font-family: var(--numbers);
+    margin: 0;
+    font-weight: bold;
+}
+
+.btn-row {
+    display: flex;
+    justify-content: space-between;
+    height: 18%;
+    width: 100%;
+}
+
+button {
+    font-family: var(--text);
+    width: 22%;
+    height: 100%;
+    border-radius: 10px;
+    border: 5px solid var(--cyan);
+}
+
+.num-btn {
+    font-size: 4.5rem;
+    font-weight: bold;
+    font-family: var(--numbers);
+}
+
+.num-btn:active {
+    background-color: var(--dPink);
+}
+
+.num-btn:hover, .fun-btn:hover {
+    scale: 1.1;
+}
+
+.fun-btn {
+    font-size: 3rem;
+    background-color: var(--dPink);
+    color: var(--cyan);
+}
+
+.fun-btn:active {
+    background-color: var(--hfText);
+}
+
+#clear-dot {
+    width: 22%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+}
+
+#clear-dot > button {
+    height: 45%;
+    width: 100%;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+@media (max-width: 1200px) {
+    #app {
+        width: 80vw
+    }
+
+    header {
+        height: 10vh;
+    }
+}
+@media (max-width: 500px) {
+    .num-btn {
+        font-size: 2rem;
+    }
+
+    .fun-btn {
+        font-size: 2rem;
+    }
+
+    #screen > p {
+        font-size: 2.5rem;
+    }
+
+    #clear-dot > .fun-btn {
+        padding: 0;
+        font-size: 1rem;
+        font-weight: normal;
+    }
+
+    #clear-dot > .num-btn {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem;
+        font-weight: bold;
+        
+    }
+}
+
+@media (max-height: 800px) {
+    header {
+        height: 10vh;
+    }
+
+    .num-btn {
+        font-size: 1.2rem;
+    }
+
+    .fun-btn {
+        font-size: 1.2rem;
+    }
+
+    #screen > p {
+        font-size: 1.8rem;
+    }
+
+    #clear-dot > .fun-btn {
+        padding: 0;
+        font-size: 0.7rem;
+        font-weight: normal;
+    }
+
+    #clear-dot > .num-btn {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem;
+        font-weight: bold;
+        
+    }
 }
