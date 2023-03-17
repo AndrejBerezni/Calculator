@@ -65,19 +65,31 @@ main {
     border: 5px solid var(--dPink);
     background-color: var(--cyan);
     color: var(--dPink);
-    padding: 5px 10px;
+    padding: 5px 10px 5px 0px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     box-shadow: 0px 5px 10px var(--hfBg);
 }
 
-#screen > p {
+#output {
+    width: 90%;
     height: 100%;
     font-size: 5rem;
     font-family: var(--numbers);
     margin: 0;
     font-weight: bold;
+    text-align: end;
+    overflow: hidden;
+}
+
+#operation {
+    height: 100%;
+    font-size: 5rem;
+    font-family: var(--numbers);
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
 }
 
 .btn-row {

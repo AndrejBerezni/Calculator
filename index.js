@@ -16,6 +16,7 @@ let minus = document.getElementById('-');
 let dot = document.getElementById('.');
 let clearScreen = document.getElementById('clear');
 let output = document.getElementById('output');
+let operation = document.getElementById('operation');
 
 let numberKey = [
     {
@@ -62,15 +63,20 @@ let numberKey = [
 
 
 function operate(firstNumber, secondNumber, operator) {
+    let result
     switch (operator) {
         case '+':
-            return parseFloat(firstNumber) + parseFloat(secondNumber);
+            result = parseFloat(firstNumber) + parseFloat(secondNumber);
+            return Math.round((result + Number.EPSILON) * 100000) / 100000;
         case '-':
-            return parseFloat(firstNumber) - parseFloat(secondNumber);
+            result = parseFloat(firstNumber) - parseFloat(secondNumber);
+            return Math.round((result + Number.EPSILON) * 100000) / 100000;
         case '/':
-            return parseFloat(firstNumber) / parseFloat(secondNumber);
+            result = parseFloat(firstNumber) / parseFloat(secondNumber);
+            return Math.round((result + Number.EPSILON) * 100000) / 100000;
         case '*':
-            return parseFloat(firstNumber) * parseFloat(secondNumber);
+            result = parseFloat(firstNumber) * parseFloat(secondNumber);
+            return Math.round((result + Number.EPSILON) * 100000) / 100000;
     }
 }
 
@@ -101,13 +107,12 @@ function operatorLogic(op) {
         firstNumber = operate(firstNumber, secondNumber, operator).toString();
         secondNumber = '';
         output.innerText = firstNumber;
-        operator = op;
         console.log(firstNumber, secondNumber, operator, '103')
     } else {
-        operator = op;
         console.log(firstNumber, secondNumber, operator, '109')
     }
     operator = op;
+    operation.innerText = op;
 }
 
 
@@ -135,21 +140,25 @@ multiply.addEventListener('click', () => {
 equals.addEventListener('click', () => {
     if (!secondNumber) {
         output.innerText = firstNumber;
+        operation.innerText = '='
     } else {
         firstNumber = operate(firstNumber, secondNumber, operator)
         secondNumber = '';
         output.innerText = firstNumber;
+        operation.innerText = '=';
     }
 
 });
 
 dot.addEventListener('click', () => {
     if (firstNumber && !secondNumber && firstNumber.includes('.') == false) {
-        firstNumber += '.'
+        firstNumber += '.';
+        output.innerText = firstNumber;
 
     } else if (secondNumber && secondNumber.includes('.') == false) {
         console.log(secondNumber)
-        secondNumber += '.'
+        secondNumber += '.';
+        output.innerText = secondNumber;
     }
 });
 
@@ -158,6 +167,7 @@ clearScreen.addEventListener('click', () => {
     secondNumber = '';
     operator = null;
     output.innerText = 0;
+    operation.innerText = '';
     console.log(firstNumber, secondNumber, operator)
 })
 
