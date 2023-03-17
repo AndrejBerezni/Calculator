@@ -62,7 +62,6 @@ let numberKey = [
 
 
 function operate(firstNumber, secondNumber, operator) {
-    operatorEntered = false;
     switch (operator) {
         case '+':
             return parseFloat(firstNumber) + parseFloat(secondNumber);
@@ -79,31 +78,34 @@ function operate(firstNumber, secondNumber, operator) {
 let firstNumber = ''
 let secondNumber = ''
 let operator
-let operatorEntered = false;
-//Here you need to fix concat:
-
+//Here you need to fix for consecutive calculations:
 function evaluateNextStep(number) {
-    if (!operatorEntered) {
-        firstNumber = firstNumber.concat(number);
+    if (!secondNumber && !operator) {
+        firstNumber += number
         output.innerText = firstNumber;
-
+        console.log(firstNumber, secondNumber, operator, '88')
     } else {
-        secondNumber = secondNumber.concat(number);
+        secondNumber += number;
         output.innerText = secondNumber;
+        console.log(firstNumber, secondNumber, operator, '92')
     }
 };
 
 function operatorLogic(op) {
     if (!firstNumber) {
         firstNumber = 0
+        console.log(firstNumber, secondNumber, operator, '98');
+
     }
-    if (operatorEntered) {
-        firstNumber = operate(firstNumber, secondNumber, operator);
+    if (secondNumber) {
+        firstNumber = operate(firstNumber, secondNumber, operator).toString();
         secondNumber = '';
-        operator = '';
         output.innerText = firstNumber;
+        operator = op;
+        console.log(firstNumber, secondNumber, operator, '103')
     } else {
-        operatorEntered = true;
+        operator = op;
+        console.log(firstNumber, secondNumber, operator, '109')
     }
     operator = op;
 }
@@ -152,10 +154,10 @@ dot.addEventListener('click', () => {
 });
 
 clearScreen.addEventListener('click', () => {
-    firstNumber = ''
-    secondNumber = ''
-    operator
-    operatorEntered = false;
-    output.innerText = 0
+    firstNumber = '';
+    secondNumber = '';
+    operator = null;
+    output.innerText = 0;
+    console.log(firstNumber, secondNumber, operator)
 })
 
