@@ -17,48 +17,6 @@ let dot = document.getElementById('.');
 let clearScreen = document.getElementById('clear');
 let output = document.getElementById('output');
 
-function operate(firstNumber, secondNumber, operator) {
-    operatorEntered = false;
-    switch (operator) {
-        case '+':
-            return parseFloat(firstNumber) + parseFloat(secondNumber);
-        case '-':
-            return parseFloat(firstNumber) - parseFloat(secondNumber);
-        case '/':
-            return parseFloat(firstNumber) / parseFloat(secondNumber);
-        case '*':
-            return parseFloat(firstNumber) * parseFloat(secondNumber);
-    }
-}
-
-
-let firstNumber = ''
-let secondNumber = ''
-let operator
-let operatorEntered = false;
-
-function evaluateNextStep(number) {
-    if (!operatorEntered) {
-        firstNumber += number;
-        output.innerText = firstNumber;
-
-    } else {
-        secondNumber += number;
-        output.innerText = secondNumber;
-    }
-};
-
-function operatorLogic(op) {
-    if (operatorEntered) {
-        firstNumber = operate(firstNumber, secondNumber, operator);
-        secondNumber = '';
-        output.innerText = firstNumber;
-    } else {
-        operatorEntered = true;
-    }
-    operator = op;
-}
-
 let numberKey = [
     {
         name: one,
@@ -96,10 +54,64 @@ let numberKey = [
         name: nine,
         value: 9
     },
-]
+    {
+        name: zero,
+        value: 0
+    }
+];
+
+
+function operate(firstNumber, secondNumber, operator) {
+    operatorEntered = false;
+    switch (operator) {
+        case '+':
+            return parseFloat(firstNumber) + parseFloat(secondNumber);
+        case '-':
+            return parseFloat(firstNumber) - parseFloat(secondNumber);
+        case '/':
+            return parseFloat(firstNumber) / parseFloat(secondNumber);
+        case '*':
+            return parseFloat(firstNumber) * parseFloat(secondNumber);
+    }
+}
+
+
+let firstNumber = ''
+let secondNumber = ''
+let operator
+let operatorEntered = false;
+//Here you need to fix concat:
+
+function evaluateNextStep(number) {
+    if (!operatorEntered) {
+        firstNumber = firstNumber.concat(number);
+        output.innerText = firstNumber;
+
+    } else {
+        secondNumber = secondNumber.concat(number);
+        output.innerText = secondNumber;
+    }
+};
+
+function operatorLogic(op) {
+    if (!firstNumber) {
+        firstNumber = 0
+    }
+    if (operatorEntered) {
+        firstNumber = operate(firstNumber, secondNumber, operator);
+        secondNumber = '';
+        operator = '';
+        output.innerText = firstNumber;
+    } else {
+        operatorEntered = true;
+    }
+    operator = op;
+}
+
+
 
 numberKey.forEach(number => {
-    number['name'].addEventListener('click', ()=> {
+    number['name'].addEventListener('click', () => {
         evaluateNextStep(number['value'])
     })
 });
@@ -119,8 +131,31 @@ multiply.addEventListener('click', () => {
 });
 
 equals.addEventListener('click', () => {
-    firstNumber = operate(firstNumber, secondNumber, operator)
-    secondNumber = '';
-    output.innerText = firstNumber;
+    if (!secondNumber) {
+        output.innerText = firstNumber;
+    } else {
+        firstNumber = operate(firstNumber, secondNumber, operator)
+        secondNumber = '';
+        output.innerText = firstNumber;
+    }
+
+});
+
+dot.addEventListener('click', () => {
+    if (firstNumber && !secondNumber && firstNumber.includes('.') == false) {
+        firstNumber += '.'
+
+    } else if (secondNumber && secondNumber.includes('.') == false) {
+        console.log(secondNumber)
+        secondNumber += '.'
+    }
+});
+
+clearScreen.addEventListener('click', () => {
+    firstNumber = ''
+    secondNumber = ''
+    operator
+    operatorEntered = false;
+    output.innerText = 0
 })
 
