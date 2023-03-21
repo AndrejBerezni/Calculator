@@ -1,66 +1,10 @@
-let one = document.getElementById('1');
-let two = document.getElementById('2');
-let three = document.getElementById('3');
-let four = document.getElementById('4');
-let five = document.getElementById('5');
-let six = document.getElementById('6');
-let seven = document.getElementById('7');
-let eight = document.getElementById('8');
-let nine = document.getElementById('9');
-let zero = document.getElementById('0');
-let equals = document.getElementById('=');
-let divide = document.getElementById('/');
-let multiply = document.getElementById('*');
-let plus = document.getElementById('+');
-let minus = document.getElementById('-');
-let dot = document.getElementById('.');
-let clearScreen = document.getElementById('clear');
-let output = document.getElementById('output');
-let operation = document.getElementById('operation');
-
-let numberKey = [
-    {
-        name: one,
-        value: 1
-    },
-    {
-        name: two,
-        value: 2
-    },
-    {
-        name: three,
-        value: 3
-    },
-    {
-        name: four,
-        value: 4
-    },
-    {
-        name: five,
-        value: 5
-    },
-    {
-        name: six,
-        value: 6
-    },
-    {
-        name: seven,
-        value: 7
-    },
-    {
-        name: eight,
-        value: 8
-    },
-    {
-        name: nine,
-        value: 9
-    },
-    {
-        name: zero,
-        value: 0
-    }
-];
-
+const numBtns = document.querySelectorAll('.num-btn');
+const funBtns = document.querySelectorAll('.fun-btn');
+const equals = document.getElementById('equals');
+const dot = document.getElementById('dot');
+const clearScreen = document.getElementById('clear');
+const output = document.getElementById('output');
+const operation = document.getElementById('operation');
 
 function operate(firstNumber, secondNumber, operator) {
     let result
@@ -81,9 +25,10 @@ function operate(firstNumber, secondNumber, operator) {
 }
 
 
-let firstNumber = ''
-let secondNumber = ''
-let operator
+let firstNumber = '';
+let secondNumber = '';
+let operator;
+
 function evaluateNextStep(number) {
     if (!secondNumber && !operator) {
         firstNumber += number
@@ -108,33 +53,18 @@ function operatorLogic(op) {
 }
 
 
-
-// numberKey.forEach(number => {
-//     number['name'].addEventListener('click', () => {
-//         evaluateNextStep(number['value'])
-//     })
-// });
-
-const numBtns = document.querySelectorAll('.num-btn');
 numBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         evaluateNextStep(btn.id)
     })
 })
 
-plus.addEventListener('click', () => {
-    operatorLogic('+');
 
-});
-minus.addEventListener('click', () => {
-    operatorLogic('-');
-});
-divide.addEventListener('click', () => {
-    operatorLogic('/');
-});
-multiply.addEventListener('click', () => {
-    operatorLogic('*');
-});
+funBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        operatorLogic(btn.id)
+    })
+})
 
 equals.addEventListener('click', () => {
     if (!secondNumber) {

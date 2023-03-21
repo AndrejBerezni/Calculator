@@ -22,7 +22,8 @@ body {
     flex-direction: column;
 }
 
-header, footer {
+header,
+footer {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -108,27 +109,37 @@ button {
     box-shadow: 0px 5px 10px var(--hfBg);
 }
 
-.num-btn {
+.num-btn,
+#dot {
     font-size: 4.5rem;
     font-weight: bold;
     font-family: var(--numbers);
 }
 
-.num-btn:active {
+.num-btn:active,
+#dot:active {
     background-color: var(--dPink);
 }
 
-.num-btn:hover, .fun-btn:hover {
+.num-btn:hover,
+.fun-btn:hover,
+#dot:hover,
+#equals:hover,
+#clear:hover {
     scale: 1.1;
 }
 
-.fun-btn {
+.fun-btn,
+#equals,
+#clear {
     font-size: 3rem;
     background-color: var(--dPink);
     color: var(--cyan);
 }
 
-.fun-btn:active {
+.fun-btn:active,
+#equals:active,
+#clear:active {
     background-color: var(--hfBg);
 }
 
