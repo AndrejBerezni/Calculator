@@ -84,32 +84,24 @@ function operate(firstNumber, secondNumber, operator) {
 let firstNumber = ''
 let secondNumber = ''
 let operator
-//Here you need to fix for consecutive calculations:
 function evaluateNextStep(number) {
     if (!secondNumber && !operator) {
         firstNumber += number
         output.innerText = firstNumber;
-        console.log(firstNumber, secondNumber, operator, '88')
     } else {
         secondNumber += number;
         output.innerText = secondNumber;
-        console.log(firstNumber, secondNumber, operator, '92')
     }
 };
 
 function operatorLogic(op) {
     if (!firstNumber) {
-        firstNumber = 0
-        console.log(firstNumber, secondNumber, operator, '98');
-
+        firstNumber = 0;
     }
     if (secondNumber) {
         firstNumber = operate(firstNumber, secondNumber, operator).toString();
         secondNumber = '';
         output.innerText = firstNumber;
-        console.log(firstNumber, secondNumber, operator, '103')
-    } else {
-        console.log(firstNumber, secondNumber, operator, '109')
     }
     operator = op;
     operation.innerText = op;
@@ -117,11 +109,18 @@ function operatorLogic(op) {
 
 
 
-numberKey.forEach(number => {
-    number['name'].addEventListener('click', () => {
-        evaluateNextStep(number['value'])
+// numberKey.forEach(number => {
+//     number['name'].addEventListener('click', () => {
+//         evaluateNextStep(number['value'])
+//     })
+// });
+
+const numBtns = document.querySelectorAll('.num-btn');
+numBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        evaluateNextStep(btn.id)
     })
-});
+})
 
 plus.addEventListener('click', () => {
     operatorLogic('+');
