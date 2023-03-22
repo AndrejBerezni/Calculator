@@ -24,11 +24,11 @@ function operate(firstNumber, secondNumber, operator) {
     }
 }
 
-
 let firstNumber = '';
 let secondNumber = '';
 let operator;
 
+//evaluateNextStep decides what to do with a number once we enter it:
 function evaluateNextStep(number) {
     if (!secondNumber && !operator) {
         firstNumber += number
@@ -39,6 +39,7 @@ function evaluateNextStep(number) {
     }
 };
 
+//operatorLogic decides what to do with an operator once we enter it:
 function operatorLogic(op) {
     if (!firstNumber) {
         firstNumber = 0;
@@ -52,7 +53,7 @@ function operatorLogic(op) {
     operation.innerText = op;
 }
 
-
+//Apply evaluateNextStep and operatorLogic to relevant buttons:
 numBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         evaluateNextStep(btn.id)
@@ -66,7 +67,9 @@ funBtns.forEach(btn => {
     })
 })
 
-equals.addEventListener('click', () => {
+//Apply logic to equals button:
+
+function equalsLogic() {
     if (!secondNumber) {
         output.innerText = firstNumber;
         operation.innerText = '='
@@ -76,10 +79,12 @@ equals.addEventListener('click', () => {
         output.innerText = firstNumber;
         operation.innerText = '=';
     }
+}
+equals.addEventListener('click', () => equalsLogic());
 
-});
+//Apply logic to dot button:
 
-dot.addEventListener('click', () => {
+function dotLogic() {
     if (firstNumber && !secondNumber && firstNumber.includes('.') == false) {
         firstNumber += '.';
         output.innerText = firstNumber;
@@ -89,8 +94,11 @@ dot.addEventListener('click', () => {
         secondNumber += '.';
         output.innerText = secondNumber;
     }
-});
+}
 
+dot.addEventListener('click', () => dotLogic());
+
+//Reset everything when we press clear button:
 clearScreen.addEventListener('click', () => {
     firstNumber = '';
     secondNumber = '';
@@ -98,5 +106,20 @@ clearScreen.addEventListener('click', () => {
     output.innerText = 0;
     operation.innerText = '';
     console.log(firstNumber, secondNumber, operator)
-})
+});
 
+//Handle key presses with keydown:
+let numberKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+let functionKeys = ['+', '-', '*', '/'];
+window.addEventListener('keydown', (e) => {
+    if (numberKeys.includes(e.key)) {
+        evaluateNextStep(e.key);
+    } else if (functionKeys.includes(e.key)) {
+        operatorLogic(e.key);
+    } else if (e.key === '=' || e.key === 'Enter') {
+        e.preventDefault()
+        equalsLogic();
+    } else if (e.key === '.') {
+        dotLogic();
+    }
+});
